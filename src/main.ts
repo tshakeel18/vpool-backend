@@ -34,6 +34,8 @@ const providerAuthenticators = {
 	google: getUserIDFromGoogleCode,
 };
 app.post("/auth/:provider", async (req, res) => {
+	debugger
+	console.log('called')
 	const { code, redirectUrl } = assertSessionInit(req.body);
 	const provider = req.params.provider;
 	if (!(provider in providerAuthenticators)) {
@@ -44,9 +46,12 @@ app.post("/auth/:provider", async (req, res) => {
 		res.status(400);
 		return;
 	}
+	
 	const getOrCreateUserId = providerAuthenticators[provider];
 
 	try {
+		
+	console.log('called here', getOrCreateUserId)
 		const userId = await getOrCreateUserId(code, redirectUrl);
 		const sessionId = sessions.createSession(userId);
 

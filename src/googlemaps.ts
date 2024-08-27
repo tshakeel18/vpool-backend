@@ -25,6 +25,7 @@ export async function getPlaceDetails(placeId: string): Promise<PlaceDetails> {
   }
 
   if (placeId in placeCache) {
+    console.log("Place ID being used:", placeId);
     return placeCache[placeId];
   }
 

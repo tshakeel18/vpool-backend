@@ -11,13 +11,13 @@ model User {
   id          Int           @id @default(autoincrement())
   email       String        @unique
   name        String?
-  groups      Group[]       @relation(references: [id])
+  groups      Group[]      
   signups     EventSignup[]
   // Invitations to carpools and active requests.
   invitations Invitation[]
 
   carpools         Carpool[]
-  groupsAsAdmin    Group[]   @relation("admins", references: [id])
+  groupsAsAdmin    Group[]   @relation("admins")
   carpoolsICreated Carpool[] @relation("carpool_creator")
   eventsICreated   Event[]   @relation("event_creator")
 
@@ -66,8 +66,8 @@ model Carpool {
 model Group {
   id       Int     @id @default(autoincrement())
   name     String
-  users    User[]  @relation(references: [id])
-  admins   User[]  @relation("admins", references: [id])
+  users    User[] 
+  admins   User[]  @relation("admins")
   events   Event[]
   joinCode String?
 }

@@ -10,7 +10,10 @@ export default users;
 
 users.get("/@me", async (req) => {
 	// @ts-expect-error
+	console.log('me api called', req.session)
+	// @ts-expect-error
 	const id = +req.session.userId;
+	// console.log(id, req.session.userId, +req.session.userId, '123')
 	if (!isFinite(id)) {
 		console.warn(
 			"Invalid user ID, but made it through API auth: ",

@@ -22,10 +22,12 @@ class SessionManager {
   }
 
   createSession(userId: number): string {
+    console.log(userId, 'user id');
     const id = random();
     this.sessions[id] = {
       userId,
     };
+    console.log(id, 'session id')
     return id;
   }
 
